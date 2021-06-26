@@ -34,7 +34,7 @@ int fib(int n,vector<int>&v)
 	{
 		return 1;
 	}
-	if (v[n] != 0)
+	if (v[n] != -1)
 	{
 		return v[n];
 	}
