@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+#define     REP(i,n) for(int i=0; i<n;i++)
+#define     rep(i,a,b) for(int i=a;i<b;i++)
+#define     mod 1000000007
+#define     mod2 998244353
+//#define     int long long
+#define     pb push_back
+#define     mp make_pair
+#define     ii pair<int,int>
+#define     vi vector<int>
+#define     f first
+#define     s second
+#define     INF 1000000000
+#define     mem(a,b) memset(a,b,sizeof(a))
+#define     all(r) r.begin(),r.end()
+#define     endl '\n'
+using namespace std;
+void fast()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	//freopen("input.txt", "r", stdin);
+	//freopen("output.txt", "w", stdout);
+
+}
+int fib(int n,vector<int>&v)
+{
+
+	if (n == 0)
+	{
+		return 0;
+	}
+	else if (n == 1)
+	{
+		return 1;
+	}
+	if (v[n] != 0)
+	{
+		return v[n];
+	}
+	v[n] = fib((n - 1),v) + fib((n - 2),v);
+	return v[n];
+}
+int main()
+{
+	fast();
+	int n;
+	cin >> n;
+	vector<int>v(n+1, 0);
+	
+	cout << fib(n, v);
+	
+}
