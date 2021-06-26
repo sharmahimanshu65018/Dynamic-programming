@@ -46,7 +46,7 @@ int main()
 	fast();
 	int n;
 	cin >> n;
-	vector<int>v(n+1, 0);
+	vector<int>v(n+1, -1);
 	
 	cout << fib(n, v);
 	
