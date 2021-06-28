@@ -69,13 +69,7 @@ void work()
 int main()
 {
 	fast();
-	int t;
-	//cin >> t;
-	t = 1;
-	while (t--)
-	{
-		work();
-		cout << endl;
-	}
+	work();
+	
 	return 0;
 }
