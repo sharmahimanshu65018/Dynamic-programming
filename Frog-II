@@ -1,0 +1,81 @@
+//https://atcoder.jp/contests/dp/tasks/dp_b
+
+#include<bits/stdc++.h>
+#define     REP(i,n) for(int i=0; i<n;i++)
+#define     rep(i,a,b) for(int i=a;i<b;i++)
+#define     mod 1000000007
+#define     mod2 998244353
+//#define     int long long
+#define     pb push_back
+#define     mp make_pair
+#define     ii pair<int,int>
+#define     vi vector<int>
+#define     f first
+#define     s second
+#define     INF 1000000000
+#define     mem(a,b) memset(a,b,sizeof(a))
+#define     all(r) r.begin(),r.end()
+#define     endl '\n'
+using namespace std;
+vi dp(100001, -1);
+void fast()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	//freopen("input.txt", "r", stdin);
+	//freopen("output.txt", "w", stdout);
+ 
+}
+/***********************code*********************/
+ 
+ 
+int path(vector<int>&v,int idx,int k,int n)
+{
+	if (idx == n - 1)
+	{
+		return 0;
+	}
+	if (dp[idx] != -1)
+	{
+		return dp[idx];
+	}
+	int path1 = INT_MAX;
+	for (int i = 1; i <= k; i++)
+	{
+		if ((idx + i) < n)
+		{
+			int cost = abs(v[idx] - v[idx + i]) + path(v, idx+i, k, n);
+			dp[idx]=path1 = min(cost, path1);
+		}
+	}
+	return dp[idx];
+}
+void work()
+{
+	int n, k;
+	cin >> n;
+	cin >> k;
+	vi v;
+	REP(i, n)
+	{
+		int x;
+		cin >> x;
+		v.push_back(x);
+	}
+	
+	cout<<path(v,0,k,n);
+}
+ 
+int main()
+{
+	fast();
+	int t;
+	//cin >> t;
+	t = 1;
+	while (t--)
+	{
+		work();
+		cout << endl;
+	}
+	return 0;
+}
