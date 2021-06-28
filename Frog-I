@@ -1,0 +1,60 @@
+
+//https://atcoder.jp/contests/dp/tasks/dp_a
+
+
+
+#include<bits/stdc++.h>
+#define     REP(i,n) for(int i=0; i<n;i++)
+#define     rep(i,a,b) for(int i=a;i<b;i++)
+#define     mod 1000000007
+#define     mod2 998244353
+//#define     int long long
+#define     pb push_back
+#define     mp make_pair
+#define     ii pair<int,int>
+#define     vi vector<int>
+#define     f first
+#define     s second
+#define     INF 1000000000
+#define     mem(a,b) memset(a,b,sizeof(a))
+#define     all(r) r.begin(),r.end()
+#define     endl '\n'
+using namespace std;
+vector<int>dp(100001, -1);
+void fast()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+}
+int path(int idx, int n, vector<int>&v, vector<int>& dp)
+{
+	if ((n - 1) == idx)
+	{
+		return 0;
+	}
+	if (dp[idx] != -1)
+	{
+		return dp[idx];
+	}
+	int path1 = abs(v[idx] - v[idx + 1]) + path(idx + 1, n, v, dp);
+	if ((idx + 2) <= (n - 1))
+	{
+		int path2 = abs(v[idx] - v[idx + 2]) + path(idx + 2, n, v, dp);
+		return dp[idx] = min(path1, path2);
+	}
+	return dp[idx] = path1;
+}
+int main()
+{
+	fast();
+	int n;
+	cin >> n;
+	vector<int>v;
+	REP(i, n)
+	{
+		int x;
+		cin >> x;
+		v.pb(x);
+	}
+	cout << path(0, n, v, dp);
+}
