@@ -1,0 +1,97 @@
+//https://atcoder.jp/contests/dp/tasks/dp_d
+
+#include<bits/stdc++.h>
+#define     REP(i,n) for(int i=0; i<n;i++)
+#define     rep(i,a,b) for(int i=a;i<b;i++)
+#define     mod 1000000007
+#define     mod2 998244353
+//#define     int long long
+#define     pb push_back
+#define     mp make_pair
+#define     ii pair<int,int>
+#define     vi vector<int>
+#define     f first
+#define     s second
+#define     INF 1000000000
+#define     mem(a,b) memset(a,b,sizeof(a))
+#define     all(r) r.begin(),r.end()
+#define     endl '\n'
+#define     vvi vector<vector<int>>
+using namespace std;
+void fast()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	//freopen("input.txt", "r", stdin);
+	//freopen("output.txt", "w", stdout);
+
+}
+
+int max3(int a, int b, int c)
+{
+	if ((a > b) && (a > c))
+	{
+		return a;
+	}
+	else if ((b > a) && (b > c))
+	{
+		return b;
+	}
+	else
+	{
+		return c;
+	}
+}
+/*******************************code************************************************/
+
+
+long long fun(vector<vector<long long>>& v, long long idx, long long w, long long n, vector<vector<long long>>& dpp)
+{
+	long long x = INT_MIN;
+	long long y = INT_MIN;
+	if (idx == n)
+	{
+		return 0;
+	}
+	if (dpp[idx][w] != -1)
+	{
+		return dpp[idx][w];
+	}
+	if (w >= v[idx][0])
+	{	
+		cout << v[idx][1] ;
+		x= v[idx][1] + fun(v, idx + 1, (w - v[idx][0]), n, dpp);
+	}
+	y= fun(v, idx + 1, w, n, dpp);
+	return dpp[idx][w]=max(x, y);
+}
+void work()
+{
+	int n, w;
+	cin >> n >> w;
+	vector<vector<long long>> v;
+	for (long long i = 0; i < n; i++)
+	{
+		vector<long long>vec;
+		long long x, y;
+		cin >> x >> y;
+		vec.pb(x);
+		vec.pb(y);
+		v.push_back(vec);
+	}
+	vector<vector<long long>> dpp(n, (vector<long long>(w+1, -1)));
+	cout<<fun(v, 0, w, n, dpp);
+}
+int main()
+{
+	fast();
+	int t;
+	//cin >> t;
+	t = 1;
+	while (t--)
+	{
+		work();
+		cout << endl;
+	}
+	return 0;
+}
