@@ -1,0 +1,126 @@
+
+//***********************************************************
+Your are given a martrix of positive number
+you have to choice to go right or down
+Print the path of maximum sum
+//*************************************************************
+
+
+
+#include<bits/stdc++.h>
+#define     REP(i,n) for(int i=0; i<n;i++)
+#define     REP(j,m) for(int j=0; j<m;j++)
+#define     rep(i,a,b) for(int i=a;i<b;i++)
+#define     mod 1000000007
+#define     mod2 998244353
+//#define     int long long
+#define     pb push_back
+#define     mp make_pair
+#define     ii pair<int,int>
+#define     vi vector<int>
+#define     vc vector<char>
+#define     vl vector<long long>
+#define     vvi vector<vector<int>>
+#define     vvl vector<vector<long long>>
+#define     f first
+#define     s second
+#define     INF 1000000000
+#define     mem(a,b) memset(a,b,sizeof(a))
+#define     all(r) r.begin(),r.end()
+#define     endl '\n'
+using namespace std;
+void fast()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	//freopen("input.txt", "r", stdin);
+	//freopen("output.txt", "w", stdout);
+
+}
+
+int max3(int a, int b, int c)
+{
+	if ((a > b) && (a > c))
+	{
+		return a;
+	}
+	else if ((b > a) && (b > c))
+	{
+		return b;
+	}
+	else
+	{
+		return c;
+	}
+}
+/*************************code*********************************/
+
+int path(vvi& v, int i, int j, int n, int m, vvi& dpp)
+{
+	if ((i >= n) || (j >= m))
+	{
+		return 0;
+	}
+	if (dpp[i][j] != -1)
+	{
+		return dpp[i][j];
+	}
+
+		int x = v[i][j] + path(v, i + 1, j, n, m, dpp);
+	
+		int y= v[i][j] + path(v, i, j + 1, n, m, dpp);
+	
+	return dpp[i][j]=max(x,y);
+}
+
+void work()
+{
+	int n, m;
+	cin >> n >> m;
+	vvi v;
+	REP(i, n)
+	{
+		vi vec;
+		REP(j, m)
+		{
+			int x;
+			cin >> x;
+			vec.pb(x);
+		}
+		v.push_back(vec);
+	}
+	vvi dpp(n, (vi(m, -1)));
+	int x=path(v, 0, 0, n, m, dpp);
+	
+	int i, j;
+	i = 0;
+	j = 0;
+	while ((j < n) && (i < n))
+	{
+		dpp[i][j] -= v[i][j];
+		if (((i + 1) < n) && (dpp[i][j] == dpp[i + 1][j]))
+		{
+			cout << "D";
+			i++;
+		}
+		else if (((j + 1) < n) && (dpp[i][j] == dpp[i][j + 1]))
+		{
+			cout << "R";
+			j++;
+		}
+	}
+
+}
+int main()
+{
+	fast();
+	int t;
+	//cin >> t;
+	t = 1;
+	while (t--)
+	{
+		work();
+		cout << endl;
+	}
+	return 0;
+}
