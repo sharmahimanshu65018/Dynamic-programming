@@ -46,10 +46,7 @@ int max3(int a, int b, int c)
 
 int path(vector<vector<char>>&v, int n, int m, int i, int j, vector<vector<long long>> &dpp)
 {
-	if ((i >= n) || (j >= n))
-	{
-		return 0;
-	}
+	
 	if (dpp[i][j] != -1)
 	{
 		return dpp[i][j];
