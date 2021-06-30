@@ -108,6 +108,10 @@ void work()
 			cout << "R";
 			j++;
 		}
+		if ((i==n-1)&&(j==m-1))
+		{
+			break;
+		}
 	}
 
 }
