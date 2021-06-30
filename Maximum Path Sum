@@ -95,7 +95,7 @@ void work()
 	int i, j;
 	i = 0;
 	j = 0;
-	while ((j < n) && (i < n))
+	while ((j < m) && (i < n))
 	{
 		dpp[i][j] -= v[i][j];
 		if (((i + 1) < n) && (dpp[i][j] == dpp[i + 1][j]))
@@ -103,7 +103,7 @@ void work()
 			cout << "D";
 			i++;
 		}
-		else if (((j + 1) < n) && (dpp[i][j] == dpp[i][j + 1]))
+		else if (((j + 1) < m) && (dpp[i][j] == dpp[i][j + 1]))
 		{
 			cout << "R";
 			j++;
