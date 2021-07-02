@@ -1,0 +1,38 @@
+//https://practice.geeksforgeeks.org/problems/coin-change2448/1#
+
+class Solution
+{
+  public:
+  long long int fun(int v[],int idx,int n,int m,vector<vector<long long int>>&dpp)
+  {
+      if(idx>=n)
+      {
+          if(m==0)
+          {
+              return 1;
+          }
+          else
+          {
+              return 0;
+          }
+      }
+      if(dpp[idx][m]!=-1)
+      {
+          return dpp[idx][m];
+      }
+      long long int x=0;
+      long long int y=0;
+      if(v[idx]<=m)
+      {
+          x+=fun(v,idx,n,(m-v[idx]),dpp);
+      }
+      y+=fun(v,idx+1,n,m,dpp);
+      return dpp[idx][m]=(x+y);
+  }
+    long long int count( int s[], int n, int m )
+    {
+        
+        vector<vector<long long int>> dpp(1005,(vector<long long int>(1005,-1)));
+        return fun(s,0,n,m,dpp);
+    }
+};
