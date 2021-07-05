@@ -1,0 +1,28 @@
+//https://leetcode.com/problems/longest-increasing-subsequence/
+
+
+int path(vector<int> &v, int idx,int prev, int n,vector<vector<int>>&dpp)
+{
+    if (idx >= n)
+    {
+        return 0;
+    }
+    int path1 = 0, path2 = 0;
+    if ((prev != -1) && (dpp[idx][prev] != -1))
+    {
+        return dpp[idx][prev];
+    }
+    if ((prev == -1) || (v[prev] < v[idx]))
+    {
+        path1 = 1 + path(v, idx + 1, idx, n, dpp);
+    }
+     path2 = path(v, idx + 1, prev, n, dpp);
+    if (prev != -1) return dpp[idx][prev] = max(path1, path2);
+    return max(path1, path2);
+}
+    int lengthOfLIS(vector<int>& a)
+    {
+        int n=a.size();
+        vector<vector<int>>dpp(3000,vector<int>(3000,-1));
+        return path(a,0,-1,n,dpp);    
+    }
